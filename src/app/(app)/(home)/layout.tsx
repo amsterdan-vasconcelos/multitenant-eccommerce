@@ -24,6 +24,7 @@ export default async function RootLayout({
         exists: false,
       },
     },
+    sort: "name",
   });
 
   const formatedData = docs.map((doc) => {

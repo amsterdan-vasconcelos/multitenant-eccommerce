@@ -2,13 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Category } from "@/payload-types";
-import * as React from "react";
+import { useRef, useState } from "react";
 import { useDropdownPosition } from "./use-dropdown-position";
 import { SubcategoryMenu } from "./subcategory-menu";
+import { CustomCategory } from "../types";
+import Link from "next/link";
 
 type CategoryDropdownProp = {
-  category: Category;
+  category: CustomCategory;
   isActive: boolean;
   isNavigationHovered: boolean;
 };
@@ -18,36 +19,54 @@ export function CategoryDropdown({
   isNavigationHovered,
   category,
 }: CategoryDropdownProp) {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const dropDownRef = React.useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const dropDownRef = useRef<HTMLDivElement>(null);
   const { getDropdownPosition } = useDropdownPosition(dropDownRef);
   const dropdownPosition = getDropdownPosition();
 
-  function onMouseEnter() {
+  function handleMouseEnter() {
     if (category.subcategories) {
       setIsOpen(true);
     }
   }
 
-  function onMouseLeave() {
+  function handleMouseLeave() {
     setIsOpen(false);
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    e.preventDefault();
+
+    if (e.key === "Enter" || e.key === " ") {
+      if (category.subcategories.length) setIsOpen(!isOpen);
+      return;
+    }
+
+    if (e.key === "Escape" && isOpen) {
+      setIsOpen(false);
+    }
   }
 
   return (
     <div
       className="relative"
       ref={dropDownRef}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onKeyDown={handleKeyDown}
     >
       <div className="relative">
         <Button
           className={cn(
-            "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-white hover:border-black text-black",
-            isActive && !isNavigationHovered && "bg-white border-black"
+            "h-11 px-4 bg-transparent border-transparent rounded-full hover:border-black hover:bg-white",
+            isActive && !isNavigationHovered && "bg-white border-black",
+            isOpen &&
+              "bg-white translate-x-reverseBoxShadowX translate-y-reverseBoxShadowY shadow-shadow border-black"
           )}
         >
-          {category.name}
+          <Link href={`/${category.slug === "all" ? "" : category.slug}`}>
+            {category.name}
+          </Link>
         </Button>
         {category.subcategories && category.subcategories.length > 0 && (
           <div
