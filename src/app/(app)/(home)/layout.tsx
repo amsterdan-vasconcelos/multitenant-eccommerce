@@ -1,47 +1,28 @@
-import configPromise from "@payload-config";
-import { getPayload } from "payload";
-
+import { Suspense } from "react";
 import { Footer } from "./footer";
 import { Navbar } from "./navbar";
-import { SearchFilters } from "./search-filters";
-import { Category } from "@/payload-types";
+import { SearchFilters, SearchFiltersSkeleton } from "./search-filters";
+import { getQueryClient, HydrateClient, trpc } from "@/trpc/server";
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const payload = await getPayload({
-    config: configPromise,
-  });
-
-  const { docs } = await payload.find({
-    collection: "categories",
-    depth: 1,
-    pagination: false,
-    where: {
-      parent: {
-        exists: false,
-      },
-    },
-    sort: "name",
-  });
-
-  const formatedData = docs.map((doc) => {
-    const subDocs = doc.subcategories?.docs ?? [];
-    const subcategories = subDocs.map((doc) => ({
-      ...(doc as Category),
-      subcategories: undefined,
-    }));
-
-    return { ...doc, subcategories };
-  });
+  const queryClient = getQueryClient();
+  void queryClient.prefetchQuery(trpc.categories.getMany.queryOptions());
 
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <SearchFilters data={formatedData} />
-      <main className="flex-1">{children}</main>
+      <HydrateClient>
+        <Suspense fallback={<SearchFiltersSkeleton />}>
+          <SearchFilters />
+        </Suspense>
+        <main className="flex-1">
+          <Suspense fallback={<p>Jéssica linda...</p>}>{children}</Suspense>
+        </main>
+      </HydrateClient>
       <Footer />
     </div>
   );

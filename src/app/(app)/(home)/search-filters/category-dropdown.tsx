@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils";
 import { useRef, useState } from "react";
 import { useDropdownPosition } from "./use-dropdown-position";
 import { SubcategoryMenu } from "./subcategory-menu";
-import { CustomCategory } from "../types";
 import Link from "next/link";
+import { CategoriesFindManyOutputSingle } from "@/modules/categories/types";
 
 type CategoryDropdownProp = {
-  category: CustomCategory;
+  category: CategoriesFindManyOutputSingle;
   isActive: boolean;
   isNavigationHovered: boolean;
 };
