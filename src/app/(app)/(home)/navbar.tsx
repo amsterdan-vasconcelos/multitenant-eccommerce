@@ -2,17 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Poppins } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NavbarSidebar, NavbarSidebarItem } from "./navbar-sidebar";
 import * as React from "react";
 import { MenuIcon } from "lucide-react";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "700",
-});
+import { Logo } from "@/components/logo";
 
 const navbarItems: { href: string; children: React.ReactNode }[] = [
   { href: "/", children: "Home" },
@@ -29,9 +24,7 @@ export function Navbar() {
   return (
     <nav className="h-20 flex justify-between lg:pl-8 border-b font-medium bg-white">
       <Link href={"/"} className="flex items-center">
-        <span className={cn("text-5xl font-semibold", poppins.className)}>
-          funroad
-        </span>
+        <Logo />
       </Link>
 
       <NavbarSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
@@ -105,7 +98,7 @@ function SignButton({
         className
       )}
     >
-      <Link {...props} />
+      <Link prefetch {...props} />
     </Button>
   );
 }
