@@ -1,11 +1,11 @@
 "use client";
 
 import { useTRPC } from "@/trpc/client";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
   const trpc = useTRPC();
-  const { data } = useSuspenseQuery(trpc.categories.getMany.queryOptions());
+  const { data } = useQuery(trpc.auth.session.queryOptions());
 
   return (
     <div>
