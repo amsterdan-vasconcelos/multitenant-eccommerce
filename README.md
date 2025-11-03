@@ -18,7 +18,7 @@
 ```
 
 ```sh
-❯ cd freelance-zarpou
+❯ cd multitenant-eccommerce
 ```
 
 ```sh
