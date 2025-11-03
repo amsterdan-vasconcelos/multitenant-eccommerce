@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center"> 
+<img src="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000" width="99"> 
+<img src="https://img.icons8.com/?size=100&id=Xf1sHBmY73hA&format=png&color=000000" width="99"> 
+</p>
 
-## Getting Started
+<h1 align="center">FUNROAD - E-commerce Multitenant</h1>
 
-First, run the development server:
+<p align="center"> Plataforma inspirada no Gumroad, construída do zero. Um verdadeiro aplicativo de e-commerce *multi-tenant*, onde criadores têm suas próprias lojas, vendem produtos digitais e recebem pagamentos via Stripe Connect. Inclui recursos como subdomínios, avaliações de produtos, bibliotecas pessoais, entrega de arquivos e taxas automáticas da plataforma. Também há um painel administrativo com controle de acesso baseado em funções. Desenvolvido com Next.js 15, Payload e Stripe Connect — um projeto sólido e prático para aprender como plataformas modernas desse tipo são criadas. </p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Começando
+
+### ⚙️ Instalação
+
+```sh
+❯ git clone git@github.com:amsterdan-vasconcelos/multitenant-eccommerce.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```sh
+❯ cd freelance-zarpou
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+❯ pnpm
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+❯ pnpm run dev
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 💻 Principais Recursos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 🏬 Arquitetura multi-tenant
+- 🌐 Subdomínios para vendedores
+- 🎨 Lojas personalizadas para cada criador
+- 💳 Integração com Stripe Connect
+- 💰 Taxas automáticas da plataforma
+- ⭐ Avaliações e comentários de produtos
+- 📚 Biblioteca de compras do usuário
+- 🧑‍💼 Controle de acesso baseado em papéis (RBAC)
+- 🛠️ Painel administrativo completo
+- 🧾 Painel do vendedor
+- 🧱 Backend com Payload CMS
+- 🗂️ Filtro de categorias e produtos
+- 🔍 Funcionalidade de busca
+- 🖼️ Suporte para upload de imagens
+- ⚙️ Construído com Next.js 15
+- 🎨 Estilizado com TailwindCSS v4
+- 💅 Componentes do ShadcnUI
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🤝 Contribuições
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 🔰 Mencione quaisquer problemas conhecidos ou limitações.
+- 🐛 Esboce seus planos para melhorias futuras.
